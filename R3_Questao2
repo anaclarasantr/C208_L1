@@ -1,0 +1,33 @@
+.data
+f1: .asciiz "Digite sua idade: "
+f2: .asciiz "Sua idade após 30 anos será: "
+
+.text
+
+# Imprimir f1 para o usuário
+li $v0, 4
+la $a0, f1
+syscall
+
+# Ler a idade do usuário
+li $v0, 5
+syscall
+move $t0, $v0 # Armazenar a idade em $t0
+
+# Calcular idade após 30 anos
+li $t1, 30       # Carregar 30 em $t1
+add $t2, $t0, $t1 # Adicionar idade do usuário e 30, resultado em $t2
+
+# Imprimir mensagem de saída
+li $v0, 4
+la $a0, f2
+syscall
+
+# Imprimir a idade após 30 anos
+move $a0, $t2
+li $v0, 1
+syscall
+
+# Sair do programa
+li $v0, 10
+syscall

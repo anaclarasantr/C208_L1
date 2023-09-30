@@ -1,0 +1,20 @@
+.text
+	#a
+	li $t0, 2
+	addi $s0, $t0, 5
+	
+	#b
+	li $t1, 89
+	addi $s1, $t1, 20
+	
+	#c
+	li $t2, -80
+	addi $s2, $t2, 1234
+	
+	#d
+	li $t3, 70
+	subi $s3, $t3, 24
+	
+	#e
+	li $t4, 20
+	subi $s4, $t4, 150

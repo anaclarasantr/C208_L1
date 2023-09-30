@@ -1,0 +1,20 @@
+.text
+#Ex 1:
+#Carregando as variaveis 
+li $t0, 10
+li $t1, 25
+li $t2, 43
+li $t3, 89
+	
+srl $s0, $t0, 8 #Deslocando 8 bits para a direita
+sll $s1, $t0, 4 #Deslocando 4 bits para a esquerda
+	
+srl $s2, $t1, 8 #Deslocando 8 bits para a direita
+sll $s3, $t1, 4 #Deslocando 4 bits para a esquerda
+	
+srl $s4, $t2, 8 #Deslocando 8 bits para a direita
+sll $s5, $t2, 4 #Deslocando 4 bits para a esquerda
+	
+srl $s6, $t3, 8 #Deslocando 8 bits para a direita
+sll $s7, $t3, 4 #Deslocando 4 bits para a esquerda
+	

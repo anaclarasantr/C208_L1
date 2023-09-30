@@ -1,0 +1,21 @@
+.data
+  a: .byte 54      # variável 'a' com valor 54
+  b: .byte 45      # variável 'b' com valor 45
+  result: .space 4  # variável para armazenar o resultado
+
+.text
+# Carregar valores de 'a' e 'b' em registradores
+lb $t0, a        # Carregar valor de 'a' em $t0
+lb $t1, b        # Carregar valor de 'b' em $t1
+
+# Somar 'a' e 'b' e armazenar o resultado em $t2
+add $t2, $t0, $t1
+
+# Imprimir o resultado
+li $v0, 1         # Código do sistema para imprimir inteiro
+move $a0, $t2     # Carregar o resultado em $a0
+syscall
+
+# Terminar o programa
+li $v0, 10        # Código do sistema para sair do programa
+syscall

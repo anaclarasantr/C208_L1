@@ -1,0 +1,23 @@
+.text
+#Carregando as variaveis 
+li $t0, 100
+li $t1, 324
+li $t2, 2018
+li $t3, 1970
+li $t4, 33
+li $t5, 66
+	
+#2
+and $s0, $t1, $t0
+and $s1, $t2, $t3
+and $s2, $t4, $t5
+	
+#3
+or $s3, $t1, $t0
+or $s4, $t2, $t3
+or $s5, $t4, $t5		
+	
+#4
+nor $t6, $t1, $t4
+nor $t7, $t3, $t2
+nor $s6, $t5, $t0

@@ -1,0 +1,56 @@
+.data
+    newline:    .asciiz "\n"
+    prompt:     .asciiz "Digite o valor de N: "
+    resultMsg:  .asciiz "A diferença é: "
+
+.text
+    main:
+        # Imprime a mensagem solicitando o valor de N
+        li $v0, 4               # Carrega o código da syscall para imprimir string
+        la $a0, prompt          # Carrega o endereço da string de prompt
+        syscall
+
+        # Lê o valor de N do usuário
+        li $v0, 5               # Carrega o código da syscall para ler inteiro
+        syscall
+        move $t0, $v0           # Move o valor de N para $t0
+
+        # Calcula o quadrado da soma dos N primeiros números naturais
+        li $t1, 0               # Inicializa $t1 com 0 para armazenar a soma
+        li $t2, 1               # Inicializa $t2 com 1 para o loop
+        loop1:
+            add $t1, $t1, $t2   # Soma $t1 com $t2 (1, 2, 3, ..., N)
+            addi $t2, $t2, 1    # Incrementa $t2 para o próximo número
+            bne $t2, $t0, loop1 # Se $t2 != N, repete o loop
+
+        mul $t1, $t1, $t1       # Calcula o quadrado da soma e armazena em $t1
+
+        # Calcula a soma dos quadrados dos N primeiros números naturais
+        li $t3, 0               # Inicializa $t3 com 0 para armazenar a soma dos quadrados
+        li $t4, 1               # Inicializa $t4 com 1 para o loop
+        loop2:
+            mul $t5, $t4, $t4   # Calcula o quadrado do número atual
+            add $t3, $t3, $t5   # Soma o quadrado ao total
+            addi $t4, $t4, 1    # Incrementa $t4 para o próximo número
+            bne $t4, $t0, loop2 # Se $t4 != N, repete o loop
+
+        # Calcula a diferença
+        sub $t6, $t1, $t3       # Subtrai a soma dos quadrados do quadrado da soma
+
+        # Imprime o resultado
+        li $v0, 4               # Carrega o código da syscall para imprimir string
+        la $a0, resultMsg       # Carrega o endereço da string de resultado
+        syscall
+
+        li $v0, 1               # Carrega o código da syscall para imprimir inteiro
+        move $a0, $t6           # Move o valor da diferença para $a0
+        syscall
+
+        # Imprime uma nova linha
+        li $v0, 4               # Carrega o código da syscall para imprimir string
+        la $a0, newline         # Carrega o endereço da string de nova linha
+        syscall
+
+        # Termina o programa
+        li $v0, 10              # Carrega o código da syscall para sair do programa
+        syscall
